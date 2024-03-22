@@ -21,9 +21,35 @@ try:
 
             else:
                 data = sock.recv(1024).decode()
-                print(str(sock.getpeername()), str(data))
+                
                 if str(data):
-                    sock.send(data.encode())
+                    
+                    result = 0
+                    operation_list = []
+
+                    for letter in data:
+                        operation_list.append(letter)
+                    oprnd1 = operation_list[0]
+                    operation = operation_list[1]
+                    oprnd2 = operation_list[2]
+
+                    num1 = int(oprnd1)
+                    num2 = int(oprnd2)
+
+                    if operation == "+":
+                        result = num1 + num2
+                    elif operation == "-":
+                        result = num1 - num2
+                    elif operation == "/":
+                        result = num1 / num2
+                    elif operation == "*":
+                        result = num1 * num2
+                    
+                    
+                    output = str(result)
+                    client_msg = data + "=" + output + "\n"
+                    print(str(sock.getpeername()), data + "=" + output)
+                    sock.send(client_msg.encode())
                 else:
                     sock.close()
                     input_socket.remove(sock)
