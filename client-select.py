@@ -10,7 +10,13 @@ sys.stdout.write('>> ')
 try:
     while True:
         message = str(input())
-        client_socket.send(message.encode())
+        f = open(message, 'r')
+        data = f.readlines()
+        
+
+        print(data)
+        [client_socket.send(data.encode()) for data in data]
+        
         sys.stdout.write(client_socket.recv(1024).decode())
         sys.stdout.write('>> ')
 
