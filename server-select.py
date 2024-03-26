@@ -24,32 +24,37 @@ try:
                 
                 if str(data):
                     
-                    result = 0
-                    operation_list = []
+                    
+                    a = data.splitlines()
+                    print(a)
+                    f = open ('result.txt', 'w')
 
-                    for letter in data:
-                        operation_list.append(letter)
-                    oprnd1 = operation_list[0]
-                    operation = operation_list[1]
-                    oprnd2 = operation_list[2]
+                    for line in a:
+                        
 
-                    num1 = int(oprnd1)
-                    num2 = int(oprnd2)
+                        def isPalindrome(stripped):
+                            return stripped == stripped[::-1]
 
-                    if operation == "+":
-                        result = num1 + num2
-                    elif operation == "-":
-                        result = num1 - num2
-                    elif operation == "/":
-                        result = num1 / num2
-                    elif operation == "*":
-                        result = num1 * num2
+                        
+                        ans = isPalindrome(line)
+                    
+                        if ans:
+                            d = "yes"
+                        else:
+                            d = "no"
+                        output = line + "-" + d
+                        print(output)
+                        
+                        f.write(output + '\n')
+                    
+                    f.close()
+                    z = open('result.txt', 'r')    
+                    b = z.readlines()
+                    [sock.send(data.encode()) for data in b]
+                    [print(str(sock.getpeername()), data) for data in b]
                     
                     
-                    output = str(result)
-                    client_msg = data + "=" + output + "\n"
-                    print(str(sock.getpeername()), data + "=" + output)
-                    sock.send(client_msg.encode())
+                    
                 else:
                     sock.close()
                     input_socket.remove(sock)
