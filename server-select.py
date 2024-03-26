@@ -51,7 +51,7 @@ try:
                     z = open('result.txt', 'r')    
                     b = z.readlines()
                     [sock.send(data.encode()) for data in b]
-                    [print(str(sock.getpeername()), data) for data in b]
+                    print(str(sock.getpeername()), output)
                     
                     
                     
