@@ -17,7 +17,7 @@ try:
         print(data)
         [client_socket.send(data.encode()) for data in data]
         
-        sys.stdout.write(client_socket.recv(1024).decode())
+        sys.stdout.write(client_socket.recv(1024).decode() +'\n')
         sys.stdout.write('>> ')
 
 except KeyboardInterrupt:

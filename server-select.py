@@ -26,12 +26,12 @@ try:
                     
                     
                     a = data.splitlines()
-                    print(a)
+                    
                     f = open ('result.txt', 'w')
 
                     for line in a:
                         
-
+                        
                         def isPalindrome(stripped):
                             return stripped == stripped[::-1]
 
@@ -43,16 +43,25 @@ try:
                         else:
                             d = "no"
                         output = line + "-" + d
-                        print(output)
+                        
+                        
+                        print(str(sock.getpeername()), output)
                         
                         f.write(output + '\n')
+                        
                     
                     f.close()
-                    z = open('result.txt', 'r')    
-                    b = z.readlines()
-                    [sock.send(data.encode()) for data in b]
-                    print(str(sock.getpeername()), output)
+
+                    x = open ('result.txt', 'r')
+                    lines = x.readlines()
+
+                    print(lines)
+                    t = str(lines)
+                    sock.send(t.encode())
                     
+                    x.close()
+                    
+
                     
                     
                 else:
