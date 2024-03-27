@@ -25,11 +25,11 @@ try:
                 if str(data):
                     
                     
-                    a = data.splitlines()
+                    received_data = data.splitlines()
                     
-                    f = open ('result.txt', 'w')
+                    data_write = open ('result.txt', 'w')
 
-                    for line in a:
+                    for line in received_data:
                         
                         
                         def isPalindrome(stripped):
@@ -47,17 +47,17 @@ try:
                         
                         print(str(sock.getpeername()), output)
                         
-                        f.write(output + '\n')
+                        data_write.write(output + '\n')
                         
                     
-                    f.close()
+                    data_write.close()
 
                     x = open ('result.txt', 'r')
                     lines = x.readlines()
 
                     print(lines)
-                    t = str(lines)
-                    sock.send(t.encode())
+                    result_read = str(lines)
+                    sock.send(result_read.encode())
                     
                     x.close()
                     
